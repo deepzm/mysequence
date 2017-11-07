@@ -57,6 +57,7 @@ SequenceStore.prototype.book = function(state, callback){
             }
             else{
                 if(result){
+                    if(result[0].length > 1) { result = result[0][1]; }
                     newValve = result=='OK' ? newValve : result;
                     logger.info('Process ' + process.pid + (result=='OK' ? ' set ' : ' incrby ') + redisKey + ' ' + newValve);
                     callback({
